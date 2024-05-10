@@ -1,0 +1,75 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Password Manager</title>
+     <style>
+         body {
+             font-family: Arial, sans-serif;
+         }
+         form {
+             margin-bottom: 20px;
+         }
+         input[type="text"], input[type="password"] {
+             width: 200px;
+             margin-bottom: 10px;
+             padding: 5px;
+         }
+         button {
+             padding: 8px 16px;
+             background-color: #4CAF50;
+             color: white;
+             border: none;
+             cursor: pointer;
+         }
+         button:hover {
+             background-color: #45a049;
+         }
+         ul {
+             list-style-type: none;
+             padding: 0;
+         }
+         li {
+             margin-bottom: 10px;
+             border-bottom: 1px solid #ddd;
+             padding-bottom: 5px;
+         }
+     </style>
+ </head>
+ <body>
+     <h1>Password Manager</h1>
+     <form id="passwordForm">
+         <input type="text" id="website" placeholder="Website" required><br>
+         <input type="text" id="username" placeholder="Username" required><br>
+         <input type="password" id="password" placeholder="Password" required><br>
+         <button type="submit">Save Password</button>
+     </form>
+     <h2>Saved Passwords</h2>
+     <ul id="passwordList"></ul>
+
+     <script>
+         const form = document.getElementById('passwordForm');
+         const websiteInput = document.getElementById('website');
+         const usernameInput = document.getElementById('username');
+         const passwordInput = document.getElementById('password');
+         const passwordList = document.getElementById('passwordList');
+
+         form.addEventListener('submit', function(event) {
+             event.preventDefault();
+             const website = websiteInput.value;
+             const username = usernameInput.value;
+             const password = passwordInput.value;
+
+             const listItem = document.createElement('li');
+             listItem.innerHTML = `<strong>Website:</strong> ${website} <br> <strong>Username:</strong> ${username} <br> <strong>Password:</strong> ${password}`;
+             passwordList.appendChild(listItem);
+
+             // Clear form inputs
+             websiteInput.value = '';
+             usernameInput.value = '';
+             passwordInput.value = '';
+         });
+     </script>
+ </body>
+ </html>
